@@ -9,7 +9,7 @@ on:
 jobs:
   ci-cd:
     runs-on: ubuntu-latest
-    environment: aws_credentical
+    environment: dev_env
     steps:
       - name: Git clone the repository
         uses: actions/checkout@v4
