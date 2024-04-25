@@ -25,7 +25,7 @@ jobs:
   cd:
     # needs: ci
     runs-on: ubuntu-latest
-    environment: aws_credentical
+    environment: aws_credentical 
     steps:
       # - name: Configure AWS credentials
       #   uses: aws-actions/configure-aws-credentials@v1
@@ -36,7 +36,8 @@ jobs:
 
       - name: Test
         run: echo " bucket is $AWS_S3_BUCKET"
-
+      - name: Test
+        run: echo ${{ vars.AWS_S3_BUCKET }}
       - name: Test
         run: echo " access id $AWS_ACCESS_KEY_ID"
       # - name: Remove all files
