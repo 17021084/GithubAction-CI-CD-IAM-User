@@ -2,13 +2,14 @@ name: CI CD
 on:
   push: # プッシュするときこちらワークフォロー実施
     branches:
-      - 'main'
+      - "main"
   pull_request: # プッシュするときこちらワークフォロー実施
     branches:
-    - 'main'
+      - "main"
 jobs:
-  ci:
+  ci-cd:
     runs-on: ubuntu-latest
+    environment: aws_credentical
     steps:
       - name: Git clone the repository
         uses: actions/checkout@v4
@@ -22,11 +23,6 @@ jobs:
         run: npm test -- --watchAll=false
       - name: Build React app
         run: npm run build
-  cd:
-    needs: ci
-    runs-on: ubuntu-latest
-    environment: aws_credentical 
-    steps:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -34,6 +30,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ vars.AWS_REGION }}
       - name: Remove all files
-        run:  aws s3 rm s3://${{ vars.AWS_S3_BUCKET }} --recursive
+        run: aws s3 rm s3://${{ vars.AWS_S3_BUCKET }} --recursive
       - name: Upload build to s3
-        run:  aws s3 cp --recursive ./build s3://${{ vars.AWS_S3_BUCKET }}
+        run: aws s3 cp --recursive ./build s3://${{ vars.AWS_S3_BUCKET }}
