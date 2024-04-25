@@ -10,8 +10,6 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
-      - name: Echo
-        run: echo ${{ vars.AWS_REGION }}
       - name: Git clone the repository
         uses: actions/checkout@v4
       - name: Set up Node.js
@@ -33,7 +31,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ vars.AWS_REGION }}
+          aws-region: ap-northeast-1
       - name: Remove all files
         run:  aws s3 rm s3://${{vars.AWS_S3_BUCKET}} --recursive
       - name: Upload build to s3
