@@ -35,10 +35,10 @@ jobs:
       #     aws-region: ap-northeast-1
 
       - name: Test
-        run: echo ${{ vars.AWS_S3_BUCKET }}
+        run: echo " bucket is $AWS_S3_BUCKET"
 
       - name: Test
-        run: echo ${{ secrets.AWS_ACCESS_KEY_ID }}
+        run: echo " access id $AWS_ACCESS_KEY_ID"
       # - name: Remove all files
       #   run:  aws s3 rm s3://${{ vars.AWS_S3_BUCKET }} --recursive
       # - name: Upload build to s3
