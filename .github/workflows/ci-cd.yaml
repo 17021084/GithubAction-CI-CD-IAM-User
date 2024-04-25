@@ -13,7 +13,7 @@ jobs:
       - name: Git clone the repository
         uses: actions/checkout@v4
       - name: Test env acess
-        run: echo  ${{ secrets.AWS_REGION }}
+        run: echo  ${{ env.AWS_REGION }}
   #     - name: Set up Node.js
   #       uses: actions/setup-node@v4
   #       with:
